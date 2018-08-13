@@ -26,18 +26,28 @@ if ( ! class_exists( 'FEDT_Hooks' ) ) {
 			add_filter( 'fed_admin_settings_upl', array( $this, 'fedt_admin_settings_upl' ), 10, 2 );
 			add_filter( 'fed_admin_upl_settings_template', array( $this, 'fedt_admin_upl_settings_template' ), 10, 2 );
 
+			add_filter( 'fed_customize_admin_user_profile_layout_options', array(
+				$this,
+				'fedt_customize_admin_user_profile_layout_options'
+			), 10 );
+
+			add_action( 'fed_admin_settings_login_action', array(
+				$this,
+				'fedt_admin_settings_login_action'
+			) );
+
 			//add_action( 'fed_before_login_form', array( $this, 'fedt_before_login_form' ) );
 		}
 
 		public function fedt_before_login_form() {
 			?>
-			<div class="bc_fed container">
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3 flex-center">
+            <div class="bc_fed container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3 flex-center">
 						<?php echo fedt_get_website_logo(); ?>
-					</div>
-				</div>
-			</div>
+                    </div>
+                </div>
+            </div>
 			<?php
 		}
 
@@ -46,7 +56,6 @@ if ( ! class_exists( 'FEDT_Hooks' ) ) {
 			$fed_admin_settings_upl['settings']['fed_upl_website_logo_width']  = isset( $request['settings']['fed_upl_website_logo_width'] ) ? (int) $request['settings']['fed_upl_website_logo_width'] : '';
 			$fed_admin_settings_upl['settings']['fed_upl_website_logo_height'] = isset( $request['settings']['fed_upl_website_logo_height'] ) ? (int) $request['settings']['fed_upl_website_logo_height'] : '100';
 			$fed_admin_settings_upl['settings']['fed_upl_template_model']      = isset( $request['settings']['fed_upl_template_model'] ) ? $request['settings']['fed_upl_template_model'] : 'default';
-			$fed_admin_settings_upl['settings']['fed_upl_hide_admin_bar']      = isset( $request['settings']['fed_upl_hide_admin_bar'] ) ? $request['settings']['fed_upl_hide_admin_bar'] : 'default';
 
 			return $fed_admin_settings_upl;
 		}
@@ -80,8 +89,7 @@ if ( ! class_exists( 'FEDT_Hooks' ) ) {
 						'input_type' => 'number'
 					) )
 				);
-
-				$array['input']['Template Model'] = array(
+				$array['input']['Template Model']      = array(
 					'col'   => 'col-md-6',
 					'name'  => __( 'Template Model', 'frontend-dashboard-templates' ),
 					'input' => fed_get_input_details( array(
@@ -91,17 +99,16 @@ if ( ! class_exists( 'FEDT_Hooks' ) ) {
 						'input_type'  => 'select'
 					) )
 				);
-
-				$array['input']['Hide Admin Menu Bar'] = array(
-					'col'   => 'col-md-6',
-					'name'  => __( 'Hide Admin Menu Bar', 'frontend-dashboard-templates' ),
-					'input' => fed_get_input_details( array(
-						'input_meta'  => 'settings[fed_upl_hide_admin_bar]',
-						'input_value' => fed_yes_no( 'ASC' ),
-						'user_value'  => isset( $fed_admin_options['settings']['fed_upl_hide_admin_bar'] ) ? $fed_admin_options['settings']['fed_upl_hide_admin_bar'] : '',
-						'input_type'  => 'select'
-					) )
-				);
+//				$array['input']['Hide Admin Menu Bar'] = array(
+//					'col'   => 'col-md-6',
+//					'name'  => __( 'Hide Admin Menu Bar', 'frontend-dashboard-templates' ),
+//					'input' => fed_get_input_details( array(
+//						'input_meta'  => 'settings[fed_upl_hide_admin_bar]',
+//						'input_value' => fed_yes_no( 'ASC' ),
+//						'user_value'  => isset( $fed_admin_options['settings']['fed_upl_hide_admin_bar'] ) ? $fed_admin_options['settings']['fed_upl_hide_admin_bar'] : '',
+//						'input_type'  => 'select'
+//					) )
+//				);
 			} else {
 				$array['input']['Website Logo'] = array(
 					'col'   => 'col-md-12',
@@ -180,8 +187,15 @@ if ( ! class_exists( 'FEDT_Hooks' ) ) {
 		}
 
 		public function fedt_remove_admin_bar() {
-			$fed_admin_options = get_option( 'fed_admin_settings_upl' );
-			if ( isset( $fed_admin_options['settings']['fed_upl_hide_admin_bar'] ) && $fed_admin_options['settings']['fed_upl_hide_admin_bar'] === 'yes' ) {
+			$user_role         = fed_get_current_user_role_key();
+			$fed_admin_options = get_option( 'fed_admin_settings_upl_hide_admin_bar' );
+			if ( $user_role && $fed_admin_options) {
+				if ( isset( $fed_admin_options['hide_admin_menu_bar']['role'] ) && array_key_exists( fed_get_current_user_role_key(), $fed_admin_options['hide_admin_menu_bar']['role'] ) ) {
+					return false;
+				}
+			}
+
+			if ( $user_role === false && isset( $fed_admin_options['hide_admin_menu_bar']['role'] ) && array_key_exists( 'fed_disable_all_user', $fed_admin_options['hide_admin_menu_bar']['role'] ) ) {
 				return false;
 			}
 
@@ -189,12 +203,14 @@ if ( ! class_exists( 'FEDT_Hooks' ) ) {
 		}
 
 		public function add_template_part( $template ) {
-			$is_template_active = get_option( 'fed_admin_settings_upl' );
-			if ( $is_template_active['settings']['fed_upl_template_model'] === 'default' ) {
-				$template[295] = FED_TEMPLATES_PLUGIN_DIR . '/templates';
-			}
-			if ( $is_template_active['settings']['fed_upl_template_model'] === 'template1' ) {
-				$template[5] = FED_TEMPLATES_PLUGIN_DIR . '/templates';
+			$is_template_active = get_option( 'fed_admin_settings_upl', false );
+			if ( $is_template_active ) {
+				if ( isset( $is_template_active['settings']['fed_upl_template_model'] ) && $is_template_active['settings']['fed_upl_template_model'] === 'default' ) {
+					$template[295] = FED_TEMPLATES_PLUGIN_DIR . '/templates';
+				}
+				if ( isset( $is_template_active['settings']['fed_upl_template_model'] ) && $is_template_active['settings']['fed_upl_template_model'] === 'template1' ) {
+					$template[5] = FED_TEMPLATES_PLUGIN_DIR . '/templates';
+				}
 			}
 
 			return $template;
@@ -224,40 +240,74 @@ if ( ! class_exists( 'FEDT_Hooks' ) ) {
 				$cbg_color      = isset( $fed_colors['color']['fed_upl_color_cbg_color'] ) ? $fed_colors['color']['fed_upl_color_cbg_color'] : '#f3f3f3';
 				$pbg_color      = isset( $fed_colors['color']['fed_upl_color_pbg_color'] ) ? $fed_colors['color']['fed_upl_color_pbg_color'] : '#f3f3f3';
 				$sbg_color      = isset( $fed_colors['color']['fed_upl_color_sbg_color'] ) ? $fed_colors['color']['fed_upl_color_sbg_color'] : '#033333';
-				$sfont_color      = isset( $fed_colors['color']['fed_upl_color_sbg_font_color'] ) ? $fed_colors['color']['fed_upl_color_sbg_font_color'] : '#FFFFFF';
-				$prim_bg_color      = isset( $fed_colors['color']['fed_upl_color_pbg_color'] ) ? $fed_colors['color']['fed_upl_color_pbg_color'] : '#0AAAAA';
+				$sfont_color    = isset( $fed_colors['color']['fed_upl_color_sbg_font_color'] ) ? $fed_colors['color']['fed_upl_color_sbg_font_color'] : '#FFFFFF';
+				$prim_bg_color  = isset( $fed_colors['color']['fed_upl_color_pbg_color'] ) ? $fed_colors['color']['fed_upl_color_pbg_color'] : '#0AAAAA';
 
 				?>
-				<style>
-					body {
-						 background-color: <?php echo $bbg_color?> !important;
-					 }
+                <style>
+                    body {
+                        background-color: <?php echo $bbg_color?> !important;
+                    }
 
-					.fed_dashboard_items {
-						background-color: transparent !important;
-					}
+                    .fed_dashboard_items {
+                        background-color: transparent !important;
+                    }
 
-					.fed_ads {
-						background-color: <?php echo $wbg_font_color ?> !important;
-					}
-					.bc_fed .fed_menu_slug a {
-						background-color: <?php echo $sbg_color ?> !important;
-						color: <?php echo $sfont_color ?>;
-						margin-right: 10px;
-					}
-					.bc_fed .fed_menu_slug.active a {
-						background-color: <?php echo $prim_bg_color ?> !important;
-					}
-					.bc_fed .panel-body {
-						background-color: <?php echo $pbg_color ?> !important;
-					}
-				</style>
+                    .fed_ads {
+                        background-color: <?php echo $wbg_font_color ?> !important;
+                    }
+
+                    .bc_fed .fed_menu_slug a {
+                        background-color: <?php echo $sbg_color ?> !important;
+                        color: <?php echo $sfont_color ?>;
+                        margin-right: 10px;
+                    }
+
+                    .bc_fed .fed_menu_slug.active a {
+                        background-color: <?php echo $prim_bg_color ?> !important;
+                    }
+
+                    .bc_fed .panel-body {
+                        background-color: <?php echo $pbg_color ?> !important;
+                    }
+                </style>
 				<?php
 			}
 		}
 
-		public function fedt_change_author_frontend_page( ) {
+		public function fedt_change_author_frontend_page() {
 			return FED_TEMPLATES_PLUGIN_DIR;
+		}
+
+		public function fedt_customize_admin_user_profile_layout_options( $options ) {
+			$fed_admin_options                                   = get_option( 'fed_admin_settings_upl_hide_admin_bar' );
+			$hide_bar['fedt_admin_user_profile_layout_hide_bar'] = array(
+				'icon'      => 'fa fa-eye-slash',
+				'name'      => __( 'Hide Admin Menu Bar', 'frontend-dashboard-templates' ),
+				'callable'  => 'fedt_admin_user_profile_hide_bar_tab',
+				'arguments' => $fed_admin_options,
+			);
+
+			return array_merge( $options, $hide_bar );
+		}
+
+		public function fedt_admin_settings_login_action( $request ) {
+			if ( isset( $request['fed_admin_unique'] ) && 'fed_admin_setting_upl_hide_bar' == $request['fed_admin_unique'] ) {
+				$fed_admin_settings_upl                        = get_option( 'fed_admin_settings_upl_hide_admin_bar' );
+				$fed_admin_settings_upl['hide_admin_menu_bar'] = array(
+					'role' => isset( $request['hide_menu_bar']['role'] ) ? $request['hide_menu_bar']['role'] : '',
+				);
+
+				$new_settings = apply_filters( 'fed_admin_settings_upl_hide_admin_bar', $fed_admin_settings_upl, $request );
+
+				update_option( 'fed_admin_settings_upl_hide_admin_bar', $new_settings );
+
+				wp_send_json_success( array(
+					'message' => __( 'Hide Admin Menu Bar Updated Successfully ' )
+				) );
+
+				exit();
+			}
 		}
 
 	}

@@ -3,8 +3,8 @@ Contributors: vinoth06, buffercode
 Tags: dashboard template, frontend dashboard template, template for dashboard, custom template
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7DHAEMST475BY
 Requires at least: 4.6
-Tested up to: 4.9.1
-Stable tag: 1.6.1
+Tested up to: 4.9.6
+Stable tag: 1.6.3
 License: GPL V3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -36,15 +36,27 @@ The right sidebar widget area can be used to show the variety of widgets in temp
 4. Add Logo and change the template form Template model
 5. Do save.
 
+== Frequently Asked Questions ==
+= How to hide admin menu bar in Frontend Dashboard =
+The Admin menu bar can be hidden in Frontend Dashboard based on the user roles.
+1. Go to Admin Dashboard | Frontend Dashboard | Frontend Dashboard | User Profile Layout | Hide Admin Menu Bar
+2. Select the necessary user roles to hide the WordPress admin menu bar, including Administrator and Unregistered users
+3. Do save.
+4. Now the Admin menu bar will be hidden for the selected user roles.
+
+
 == Changelog ==
-= v1.6.1 [29-January-2017] =
+= v1.6.3 [23-May-2018] =
+* Updated: Enable or disable Admin bar based on the User Role
+
+= v1.6.1 [29-January-2018] =
 * Bug fixes for multiple user in single page on Shortcode.
 
-= v1.6 [16-January-2017] =
+= v1.6 [16-January-2018] =
 * Improved layouts.
 * Added post into the user profile page tab.
 
-= v1.5 [16-January-2017] =
+= v1.5 [16-January-2018] =
 * New : Now admin bar can be disable/enable in in Frontend Dashboard | Frontend Dashboard | User Profile Layout | Settings | Hide Admin Menu Bar
 * Bug fixed: Background color default to green.
 * Bug fixed: Auto height too 100% removed.
@@ -65,7 +77,7 @@ The right sidebar widget area can be used to show the variety of widgets in temp
 * Public release
 
 == Upgrade Notice ==
-= v1.6.1 [29-January-2017] =
-* Bug fixes for multiple user in single page on Shortcode.
+= v1.6.3 [23-May-2018] =
+* Updated: Enable or disable Admin bar based on the User Role
 
 == Screenshots ==
