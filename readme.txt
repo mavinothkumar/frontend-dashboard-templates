@@ -3,8 +3,8 @@ Contributors: vinoth06, buffercode
 Tags: dashboard template, frontend dashboard template, template for dashboard, custom template
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7DHAEMST475BY
 Requires at least: 4.6
-Tested up to: 4.9.6
-Stable tag: 1.6.3
+Tested up to: 4.9.8
+Stable tag: 1.6.4
 License: GPL V3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -46,6 +46,9 @@ The Admin menu bar can be hidden in Frontend Dashboard based on the user roles.
 
 
 == Changelog ==
+= v1.6.4 [03-Oct-2018] =
+* Bug fixes
+
 = v1.6.3 [23-May-2018] =
 * Updated: Enable or disable Admin bar based on the User Role
 
@@ -77,7 +80,7 @@ The Admin menu bar can be hidden in Frontend Dashboard based on the user roles.
 * Public release
 
 == Upgrade Notice ==
-= v1.6.3 [23-May-2018] =
-* Updated: Enable or disable Admin bar based on the User Role
+= v1.6.4 [03-Oct-2018] =
+* Bug fixes
 
 == Screenshots ==
