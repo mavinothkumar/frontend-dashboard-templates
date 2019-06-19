@@ -37,9 +37,6 @@ body:not(.custom-background-image):before, body:not(.custom-background-image):af
     color: #033333!important;
 }
 
-.bc_fed .collapse .image-responsive.img-circle {
-    width: 75px;
-}
 .bc_fed .list-group-item:hover .flex,
 .bc_fed .list-group-item:focus .flex {
     color: #033333!important;

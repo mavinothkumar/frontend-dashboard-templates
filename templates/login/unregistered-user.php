@@ -5,7 +5,6 @@
 
 $details = fed_login_form();
 
-
 do_action( 'fed_before_login_form' );
 ?>
 	<div class="bc_fed container-fluid fed_login_container fed_template1">
@@ -72,11 +71,18 @@ do_action( 'fed_before_login_form' );
 								uasort( $contents, 'fed_sort_by_order' );
 								foreach ( $contents as $content ) {
 									?>
-									<div class="form-group">
-										<?php echo ! empty( $content['name'] ) ? '<label>' . esc_attr( $content['name']) . '</label>' : '';
-										?>
-										<?php echo $content['input'] ?>
-									</div>
+                                    <div class="form-group">
+                                        <?php echo ! empty($content['name']) && empty($content['extended']) ? '<label>'.$content['name'].'</label>' : ''; ?><?php echo $content['input'] ?>
+                                        <?php
+                                        if ( ! empty($content['extended'])) {
+                                            $label = maybe_unserialize($content['extended']);
+                                            if (isset($label['label'])) {
+                                                echo $label['label'];
+                                            }
+                                        }
+
+                                        ?>
+                                    </div>
 									<?php
 								}
 								?>

@@ -14,6 +14,9 @@ function fedt_enqueue_template1() {
 		array(), FED_TEMPLATES_PLUGIN_VERSION, 'all' );
 }
 
+/**
+ * @return string
+ */
 function fedt_get_website_logo() {
 	$upl_settings = get_option( 'fed_admin_settings_upl' );
 	if ( isset( $upl_settings['settings']['fed_upl_website_logo'] ) && 0 !== $upl_settings['settings']['fed_upl_website_logo'] ) {
@@ -38,6 +41,9 @@ function fedt_load_text_domain() {
 
 /**
  * User Templates
+ *
+ * @param $fed_user_attr
+ * @param $user_id
  */
 
 
@@ -67,6 +73,9 @@ function fedt_show_user_by_role( $fed_user_attr, $user_id ) {
 	<?php
 }
 
+/**
+ * @param $user
+ */
 function fedt_show_user_profile_page( $user ) {
 	/**
 	 * Collect Menu, User Information and Menu Items
@@ -250,6 +259,9 @@ function fedt_show_user_profile_page( $user ) {
 
 }
 
+/**
+ * @param $fed_user_attr
+ */
 function fedt_show_users_by_role( $fed_user_attr ) {
 	$user_roles    = fed_get_user_roles();
 	$get_user_role = $fed_user_attr->role;

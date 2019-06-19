@@ -3,8 +3,8 @@ Contributors: vinoth06, buffercode
 Tags: dashboard template, frontend dashboard template, template for dashboard, custom template
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7DHAEMST475BY
 Requires at least: 4.6
-Tested up to: 4.9.8
-Stable tag: 1.6.4
+Tested up to: 5.2
+Stable tag: 1.6.7
 License: GPL V3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -46,6 +46,19 @@ The Admin menu bar can be hidden in Frontend Dashboard based on the user roles.
 
 
 == Changelog ==
+
+= 1.6.7 [18-04-2019] =
+
+* Bug fixed: Checkbox label with HTML content support
+
+= 1.6.6 [18-03-2019] =
+
+* Bug fixed: Left menu responsive
+
+= 1.6.5 [08-03-2019] =
+
+* Dashboard left side column full width.
+
 = v1.6.4 [03-Oct-2018] =
 * Bug fixes
 
@@ -80,7 +93,7 @@ The Admin menu bar can be hidden in Frontend Dashboard based on the user roles.
 * Public release
 
 == Upgrade Notice ==
-= v1.6.4 [03-Oct-2018] =
-* Bug fixes
+= 1.6.6 [18-03-2019] =
 
+* Bug fixed: Left menu responsive
 == Screenshots ==
