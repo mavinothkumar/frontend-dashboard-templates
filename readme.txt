@@ -4,7 +4,7 @@ Tags: dashboard template, frontend dashboard template, template for dashboard, c
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7DHAEMST475BY
 Requires at least: 4.6
 Tested up to: 5.2
-Stable tag: 1.6.7
+Stable tag: 1.6.9
 License: GPL V3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -29,6 +29,45 @@ These templates are mobile responsive and easily navigable.
 = Widgets =
 The right sidebar widget area can be used to show the variety of widgets in template
 
+= Frontend Dashboard Plugins List =
+* [Frontend Dashboard Membership (Beta) ](https://buffercode.com/plugin/frontend-dashboard-membership)
+* [Frontend Dashboard Payment (Beta) ](https://buffercode.com/plugin/frontend-dashboard-payment)
+* [Frontend Dashboard Pages](https://buffercode.com/plugin/frontend-dashboard-pages)
+* [Frontend Dashboard Extra](https://buffercode.com/plugin/frontend-dashboard-extra)
+* [Frontend Dashboard Captcha](https://buffercode.com/plugin/frontend-dashboard-captcha)
+* [Frontend Dashboard Templates](https://buffercode.com/plugin/frontend-dashboard-templates)
+* [Frontend Dashboard Custom Post and Taxonomies](https://buffercode.com/plugin/frontend-dashboard-custom-post-and-taxonomies)
+
+= Videos =
+
+For more video : [Frontend Dashboard](https://buffercode.com/category/name/frontend-dashboard)
+
+* [How to show custom post field in Frontend Post](https://buffercode.com/post/how-to-show-custom-post-field-in-frontend-post)
+
+* [How to Translate Frontend Dashboard](https://buffercode.com/post/how-to-translate-frontend-dashboard)
+
+* [How to create custom login for Frontend Dashboard](https://buffercode.com/post/how-to-create-custom-login-for-frontend-dashboard-wordpress-plugin)
+
+* [How to create Dashboard for Frontend Dashboard](https://buffercode.com/post/how-to-create-dashboard-for-frontend-dashboard-wordpress-plugin)
+
+* [How to set Redirect on Login for Frontend Dashboard](https://buffercode.com/post/how-to-set-redirect-on-login-for-frontend-dashboard-wordpress-plugin)
+
+* [How to set Widget for Frontend Dashboard](https://buffercode.com/post/how-to-set-widget-for-frontend-dashboard-wordpress-plugin)
+
+* [How to Create Custom User Role in Frontend Dashboard](https://buffercode.com/post/how-to-create-custom-user-role-in-frontend-dashboard-wordpress-plugin)
+
+* [How to create a page for Users, based on their User Role](https://buffercode.com/post/how-to-create-a-page-for-users-based-on-their-user-role)
+
+* [How new user can select user role on registration](https://buffercode.com/post/how-new-user-can-select-user-role-on-registration)
+
+* [How to customise the layout colours in Frontend Dashboard](https://buffercode.com/post/how-to-customise-the-layout-colours-in-frontend-dashboard)
+
+* [How to manage post options in Frontend Dashboard](https://buffercode.com/post/how-to-manage-post-options-in-frontend-dashboard)
+
+* [How to create custom menu in Frontend Dashboard](https://buffercode.com/post/how-to-create-custom-menu-in-frontend-dashboard)
+
+For more video : [Frontend Dashboard](https://buffercode.com/category/name/frontend-dashboard)
+
 == Installation ==
 1. Upload the “frontend-dashboard-templates” directory to the plugins directory.
 2. Go to the plugins setting page and activate “Frontend Dashboard Templates”
@@ -46,6 +85,10 @@ The Admin menu bar can be hidden in Frontend Dashboard based on the user roles.
 
 
 == Changelog ==
+
+=  1.6.8 [20-06-2019] =
+
+* Bug fixed: Supports multi-level menu from Frontend Dashboard.
 
 = 1.6.7 [18-04-2019] =
 
@@ -93,7 +136,7 @@ The Admin menu bar can be hidden in Frontend Dashboard based on the user roles.
 * Public release
 
 == Upgrade Notice ==
-= 1.6.6 [18-03-2019] =
+=  1.6.8 [20-06-2019] =
 
-* Bug fixed: Left menu responsive
+* Bug fixed: Supports multi-level menu from Frontend Dashboard.
 == Screenshots ==

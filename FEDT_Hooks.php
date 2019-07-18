@@ -24,7 +24,7 @@ if ( ! class_exists('FEDT_Hooks')) {
             add_filter('fed_change_author_frontend_page', array($this, 'fedt_change_author_frontend_page'));
             add_filter('fed_admin_upl_colors_template', array($this, 'fedt_admin_upl_colors_template'), 10, 2);
             add_filter('fed_admin_settings_upl_color', array($this, 'fedt_admin_settings_upl_color'), 10, 2);
-            add_filter('fed_add_inline_css_at_head', array($this, 'fedt_add_inline_css_at_head'));
+            add_action('fed_add_inline_css_at_head', array($this, 'fedt_add_inline_css_at_head'));
             add_filter('fed_admin_settings_upl', array($this, 'fedt_admin_settings_upl'), 10, 2);
             add_filter('fed_admin_upl_settings_template', array($this, 'fedt_admin_upl_settings_template'), 10, 2);
 
@@ -291,6 +291,7 @@ if ( ! class_exists('FEDT_Hooks')) {
         public function fedt_add_inline_css_at_head()
         {
             $fed_colors = get_option('fed_admin_setting_upl_color');
+
             if ($fed_colors !== false) {
                 //Body BG Color
                 $bbg_color = isset($fed_colors['color']['fed_upl_color_bbg_color']) ? $fed_colors['color']['fed_upl_color_bbg_color'] : 'transparent';
@@ -299,7 +300,7 @@ if ( ! class_exists('FEDT_Hooks')) {
                 //Content BG Color
                 $cbg_color = isset($fed_colors['color']['fed_upl_color_cbg_color']) ? $fed_colors['color']['fed_upl_color_cbg_color'] : '#f3f3f3';
                 //Primary BG Color
-                $pbg_color = isset($fed_colors['color']['fed_upl_color_pbg_color']) ? $fed_colors['color']['fed_upl_color_pbg_color'] : '#f3f3f3';
+                $pbg_color = isset($fed_colors['color']['fed_upl_color_bg_color']) ? $fed_colors['color']['fed_upl_color_bg_color'] : '#f3f3f3';
                 //Secondary BG Color
                 $sbg_color = isset($fed_colors['color']['fed_upl_color_sbg_color']) ? $fed_colors['color']['fed_upl_color_sbg_color'] : '#033333';
                 //Secondary Font Color
@@ -332,7 +333,7 @@ if ( ! class_exists('FEDT_Hooks')) {
                     }
 
                     .bc_fed .panel-body {
-                        background-color: <?php echo $pbg_color ?> !important;
+                        background-color: <?php echo $cbg_color ?> !important;
                     }
 
                     .bc_fed #fed_template1_template {
