@@ -32,11 +32,13 @@ do_action( 'fed_before_login_only_form' );
 									<?php
 								}
 								?>
-								<div class="row">
-									<div class="col-md-12">
-										<input type="hidden" name="submit" value="Login" /><button class="btn btn-primary" type="submit"><?php echo $details['button'] ?></button>
-									</div>
-								</div>
+                                <div class="form-group">
+                                    <div class="text-center">
+                                        <input type="hidden" name="submit" value="Login"/>
+                                        <button class="btn btn-primary"
+                                                type="submit"><?php echo $details['button'] ?></button>
+                                    </div>
+                                </div>
 							</form>
 						</div>
 					</div>

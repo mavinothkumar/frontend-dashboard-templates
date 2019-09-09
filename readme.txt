@@ -4,7 +4,7 @@ Tags: dashboard template, frontend dashboard template, template for dashboard, c
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7DHAEMST475BY
 Requires at least: 4.6
 Tested up to: 5.2
-Stable tag: 1.6.9
+Stable tag: 1.6.10
 License: GPL V3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -13,7 +13,7 @@ Frontend Dashboard Template will have customised layouts with logo, varieties co
 == Description ==
 
 > #### Notice
-> This is a Add-on plugin of [Frontend Dashboard](https://wordpress.org/plugins/frontend-dashboard/), So please install [Frontend Dashboard](https://buffercode.com/plugin/frontend-dashboard) to use this plugin
+> This is an Add-on plugin of [Frontend Dashboard](https://wordpress.org/plugins/frontend-dashboard/), So please install [Frontend Dashboard](https://buffercode.com/plugin/frontend-dashboard) to use this plugin
 
 Frontend Dashboard template will have customised layouts with logo, varieties colors for layouts, extendable by widget and layouts.
 
@@ -86,6 +86,9 @@ The Admin menu bar can be hidden in Frontend Dashboard based on the user roles.
 
 == Changelog ==
 
+=  1.6.10 [04-08-2019] =
+* Bug fixes
+
 =  1.6.8 [20-06-2019] =
 
 * Bug fixed: Supports multi-level menu from Frontend Dashboard.
@@ -136,7 +139,6 @@ The Admin menu bar can be hidden in Frontend Dashboard based on the user roles.
 * Public release
 
 == Upgrade Notice ==
-=  1.6.8 [20-06-2019] =
-
-* Bug fixed: Supports multi-level menu from Frontend Dashboard.
+=  1.6.10 [04-08-2019] =
+* Bug fixes
 == Screenshots ==
