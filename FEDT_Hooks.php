@@ -13,6 +13,9 @@
 
 
 if ( ! class_exists('FEDT_Hooks')) {
+    /**
+     * Class FEDT_Hooks
+     */
     class FEDT_Hooks
     {
         public function __construct()
@@ -228,7 +231,11 @@ if ( ! class_exists('FEDT_Hooks')) {
         {
             $user_role         = fed_get_current_user_role_key();
             $fed_admin_options = get_option('fed_admin_settings_upl_hide_admin_bar');
-            if ($user_role && $fed_admin_options) {
+            if ($user_role &&
+                $fed_admin_options &&
+                isset($fed_admin_options['hide_admin_menu_bar']['role']) &&
+                count($fed_admin_options['hide_admin_menu_bar']['role']) > 0
+            ) {
                 if (isset($fed_admin_options['hide_admin_menu_bar']['role']) && array_key_exists(fed_get_current_user_role_key(),
                                 $fed_admin_options['hide_admin_menu_bar']['role'])) {
                     show_admin_bar(false);
@@ -391,7 +398,7 @@ if ( ! class_exists('FEDT_Hooks')) {
             if (isset($request['fed_admin_unique']) && 'fed_admin_setting_upl_hide_bar' == $request['fed_admin_unique']) {
                 $fed_admin_settings_upl                        = get_option('fed_admin_settings_upl_hide_admin_bar');
                 $fed_admin_settings_upl['hide_admin_menu_bar'] = array(
-                        'role' => isset($request['hide_menu_bar']['role']) ? $request['hide_menu_bar']['role'] : '',
+                        'role' => isset($request['hide_menu_bar']['role']) ? $request['hide_menu_bar']['role'] : array(),
                 );
 
                 $new_settings = apply_filters('fed_admin_settings_upl_hide_admin_bar', $fed_admin_settings_upl,

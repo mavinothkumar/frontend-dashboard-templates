@@ -69,22 +69,25 @@ do_action( 'fed_before_login_form' );
 								fed_wp_nonce_field( 'fed_nonce', 'fed_nonce' );
 								$contents = $detail['content'];
 								uasort( $contents, 'fed_sort_by_order' );
-								foreach ( $contents as $content ) {
-									?>
-                                    <div class="form-group">
-                                        <?php echo ! empty($content['name']) && empty($content['extended']) ? '<label>'.$content['name'].'</label>' : ''; ?><?php echo $content['input'] ?>
-                                        <?php
-                                        if ( ! empty($content['extended'])) {
-                                            $label = maybe_unserialize($content['extended']);
-                                            if (isset($label['label'])) {
-                                                echo $label['label'];
-                                            }
+                                foreach ($contents as $content) {
+                                    if ( ! empty($content['extended'])) {
+                                        $label = null;
+                                        $extended = maybe_unserialize($content['extended']);
+                                        if (isset($extended['label'])) {
+                                            $label =  $extended['label'];
                                         }
+                                    }
+                                    ?>
+                                    <div class="form-group">
+                                        <?php echo ! empty($content['name']) && $label === null ? '<label>'.$content['name'].'</label>' : ''; ?>
 
+                                        <?php echo $content['input'] ?>
+                                        <?php
+                                        echo $label !== null ? '<label>'.$content['name'].'</label>' : '';
                                         ?>
                                     </div>
-									<?php
-								}
+                                    <?php
+                                }
 								?>
 								<div class="form-group">
 									<div class="text-center">
