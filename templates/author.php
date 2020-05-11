@@ -17,12 +17,12 @@
 	<?php endif; ?>
 	<?php wp_head(); ?>
 </head>
-<body <?php body_class() ?>>
+<body <?php body_class(); ?>>
 
 <div id="primary fed_dashboard" class="container-fluid">
 	<?php
 	$user = get_user_by( 'slug', get_query_var( 'author_name' ) );
-	fedt_show_user_profile_page( $user);
+	fedt_show_user_profile_page( $user );
 	?>
 </div>
 <?php get_footer(); ?>

@@ -4,7 +4,6 @@
  *
  * @package frontend-dashboard
  */
-
 $template_type = get_option( 'fed_admin_settings_upl', 'default' );
 
 $template = isset( $template_type['settings']['fed_upl_template_model'] ) ? $template_type['settings']['fed_upl_template_model'] : 'default';

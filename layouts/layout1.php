@@ -12,7 +12,7 @@ if ( $dashboard_url === $current_link && ! is_user_logged_in() ) {
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-    <title><?php wp_title(' '); ?></title>
+	<title><?php wp_title( ' ' ); ?></title>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
@@ -21,11 +21,12 @@ if ( $dashboard_url === $current_link && ! is_user_logged_in() ) {
 	<?php endif; ?>
 	<?php wp_head(); ?>
 </head>
-<body <?php body_class() ?>>
+<body <?php body_class(); ?>>
 
 <div id="primary fed_dashboard" class="container-fluid">
 	<?php
-	while ( have_posts() ) : the_post();
+	while ( have_posts() ) :
+		the_post();
 		the_content();
 	endwhile;
 	?>

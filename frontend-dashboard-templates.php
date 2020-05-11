@@ -3,7 +3,7 @@
  * Plugin Name: Frontend Dashboard Templates
  * Plugin URI:
  * Description: Frontend Dashboard Pages is a plugin to show pages inside the Frontend Dashboard menu. The assigning page may contain content, images and even shortcodes
- * Version: 1.7.1
+ * Version: 1.7.6
  * Author: vinoth06
  * Author URI: http://buffercode.com/
  * License: GPLv2
@@ -17,13 +17,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 $fed_check = get_option( 'fed_plugin_version' );
 
-include_once ABSPATH . 'wp-admin/includes/plugin.php';
+require_once ABSPATH . 'wp-admin/includes/plugin.php';
 if ( $fed_check && is_plugin_active( 'frontend-dashboard/frontend-dashboard.php' ) ) {
 
 	/**
 	 * Version Number
 	 */
-	define( 'FED_TEMPLATES_PLUGIN_VERSION', '1.7.1' );
+	define( 'FED_TEMPLATES_PLUGIN_VERSION', '1.7.6' );
 
 	/**
 	 * App Name
@@ -57,7 +57,8 @@ if ( $fed_check && is_plugin_active( 'frontend-dashboard/frontend-dashboard.php'
 		<div class="notice notice-warning">
 			<p>
 				<b>
-					<?php _e( 'Please install <a href="https://buffercode.com/plugin/frontend-dashboard">Frontend Dashboard</a> to use this plugin [Frontend Dashboard Template]', 'frontend-dashboard-templates' );
+					<?php
+					_e( 'Please install <a href="https://buffercode.com/plugin/frontend-dashboard">Frontend Dashboard</a> to use this plugin [Frontend Dashboard Template]', 'frontend-dashboard-templates' );
 					?>
 				</b>
 			</p>

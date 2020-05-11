@@ -42,7 +42,7 @@ if ( ! class_exists( 'FEDT_Page_loader' ) ) {
 			);
 			// Add your templates to this array.
 			$this->templates = array(
-				'layouts/layout1.php' => 'FED Layout 1'
+				'layouts/layout1.php' => 'FED Layout 1',
 			);
 
 		}
@@ -60,7 +60,6 @@ if ( ! class_exists( 'FEDT_Page_loader' ) ) {
 
 		/**
 		 * Adds our template to the page dropdown for v4.7+
-		 *
 		 */
 		public function add_new_template( $posts_templates ) {
 			$posts_templates = array_merge( $posts_templates, $this->templates );
@@ -105,15 +104,17 @@ if ( ! class_exists( 'FEDT_Page_loader' ) ) {
 				return $template;
 			}
 			// Return default template if we don't have a custom one defined
-			if ( ! isset( $this->templates[ get_post_meta(
+			if ( ! isset(
+				$this->templates[ get_post_meta(
 					$post->ID, '_wp_page_template', true
-				) ] )
+				) ]
+			)
 			) {
 				return $template;
 			}
 			$file = plugin_dir_path( FED_TEMPLATES_PLUGIN ) . get_post_meta(
-					$post->ID, '_wp_page_template', true
-				);
+				$post->ID, '_wp_page_template', true
+			);
 			// Just to be safe, we check if the file exist first
 			if ( file_exists( $file ) ) {
 				return $file;

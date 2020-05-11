@@ -3,8 +3,8 @@ Contributors: vinoth06, buffercode
 Tags: dashboard template, frontend dashboard template, template for dashboard, custom template
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7DHAEMST475BY
 Requires at least: 4.6
-Tested up to: 5.2.4
-Stable tag: 1.7.1
+Tested up to: 5.4.1
+Stable tag: 1.7.6
 License: GPL V3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -86,6 +86,15 @@ The Admin menu bar can be hidden in Frontend Dashboard based on the user roles.
 
 == Changelog ==
 
+=  1.7.6 [11-May-2020] =
+* Bug fixes
+
+=  1.7.4 [21-11-2019] =
+* Bug: Unnecessary body background color update - Thanks to Vik for reporting
+
+=  1.7.3 [3-11-2019] =
+* Bug fixes
+
 =  1.7.1 [28-10-2019] =
 * Bug fixes
 
@@ -139,7 +148,7 @@ The Admin menu bar can be hidden in Frontend Dashboard based on the user roles.
 * Public release
 
 == Upgrade Notice ==
-=  1.7.1 [28-10-2019] =
+=  1.7.2 [30-10-2019] =
 * Bug fixes
 
 == Screenshots ==

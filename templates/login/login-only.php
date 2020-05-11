@@ -17,7 +17,7 @@ do_action( 'fed_before_login_only_form' );
 					</div>
 					<div class="panel-body">
 						<div class="fed_tab_content"
-							 data-id="<?php echo $details['menu']['id'] ?>">
+							 data-id="<?php echo $details['menu']['id']; ?>">
 							<form method="post"
 								  class="fed_form_post"
 							>
@@ -27,18 +27,18 @@ do_action( 'fed_before_login_only_form' );
 								foreach ( $contents as $content ) {
 									?>
 									<div class="form-group">
-										<?php echo ! empty( $content['name'] ) ? '<label>' . $content['name'] . '</label>' : ''; ?><?php echo $content['input'] ?>
+										<?php echo ! empty( $content['name'] ) ? '<label>' . $content['name'] . '</label>' : ''; ?><?php echo $content['input']; ?>
 									</div>
 									<?php
 								}
 								?>
-                                <div class="form-group">
-                                    <div class="text-center">
-                                        <input type="hidden" name="submit" value="Login"/>
-                                        <button class="btn btn-primary"
-                                                type="submit"><?php echo $details['button'] ?></button>
-                                    </div>
-                                </div>
+								<div class="form-group">
+									<div class="text-center">
+										<input type="hidden" name="submit" value="Login"/>
+										<button class="btn btn-primary"
+												type="submit"><?php echo $details['button']; ?></button>
+									</div>
+								</div>
 							</form>
 						</div>
 					</div>
