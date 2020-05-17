@@ -3,7 +3,16 @@
  * Logged in User form
  */
 
-$details = fed_login_only();
+if ( isset( $_GET['action'], $_GET['key'], $_GET['login'] ) && ( 'fed_reset' === $_GET['action'] ) ) {
+	$details = fed_reset_password_only();
+	$type    = 'Reset Password';
+} else {
+	$details = fed_login_only();
+	$type    = 'Login';
+}
+$registration = fed_get_registration_url();
+$forgot       = fed_get_forgot_password_url();
+
 
 do_action( 'fed_before_login_only_form' );
 ?>
@@ -17,9 +26,9 @@ do_action( 'fed_before_login_only_form' );
 					</div>
 					<div class="panel-body">
 						<div class="fed_tab_content"
-							 data-id="<?php echo $details['menu']['id']; ?>">
+								data-id="<?php echo $details['menu']['id']; ?>">
 							<form method="post"
-								  class="fed_form_post"
+									class="fed_form_post"
 							>
 								<?php
 								$contents = $details['content'];
@@ -37,6 +46,30 @@ do_action( 'fed_before_login_only_form' );
 										<input type="hidden" name="submit" value="Login"/>
 										<button class="btn btn-primary"
 												type="submit"><?php echo $details['button']; ?></button>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-12 padd_top_20 text-center">
+										<?php if ( $registration ) { ?>
+											<a href="<?php echo esc_url( $registration ); ?>">
+												<?php
+												esc_attr_e(
+													'Create an account',
+													'frontend-dashboard'
+												);
+												?>
+											</a> |
+										<?php } ?>
+										<?php
+										if ( $forgot ) {
+											?>
+											<a href="<?php echo esc_url( $forgot ); ?>">
+												<?php esc_attr_e( 'Lost Password?', 'frontend-dashboard' ); ?>
+											</a>
+											<?php
+										}
+										?>
 									</div>
 								</div>
 							</form>

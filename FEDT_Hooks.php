@@ -31,9 +31,9 @@ if ( ! class_exists( 'FEDT_Hooks' ) ) {
 
 			add_filter(
 				'fed_customize_admin_user_profile_layout_options', array(
-					$this,
-					'fedt_customize_admin_user_profile_layout_options',
-				), 10
+				$this,
+				'fedt_customize_admin_user_profile_layout_options',
+			), 10
 			);
 
 			add_action(
@@ -254,23 +254,28 @@ if ( ! class_exists( 'FEDT_Hooks' ) ) {
 		public function fedt_remove_admin_bar() {
 			$user_role         = fed_get_current_user_role_key();
 			$fed_admin_options = get_option( 'fed_admin_settings_upl_hide_admin_bar' );
-			if ( $user_role &&
+			if (
+				$user_role &&
 				$fed_admin_options &&
 				isset( $fed_admin_options['hide_admin_menu_bar']['role'] ) &&
 				count( $fed_admin_options['hide_admin_menu_bar']['role'] ) > 0
 			) {
-				if ( isset( $fed_admin_options['hide_admin_menu_bar']['role'] ) && array_key_exists(
-					fed_get_current_user_role_key(),
-					$fed_admin_options['hide_admin_menu_bar']['role']
-				) ) {
+				if (
+					isset( $fed_admin_options['hide_admin_menu_bar']['role'] ) && array_key_exists(
+						fed_get_current_user_role_key(),
+						$fed_admin_options['hide_admin_menu_bar']['role']
+					)
+				) {
 					show_admin_bar( false );
 				}
 			}
 
-			if ( $user_role === false && isset( $fed_admin_options['hide_admin_menu_bar']['role'] ) && array_key_exists(
-				'fed_disable_all_user',
-				$fed_admin_options['hide_admin_menu_bar']['role']
-			) ) {
+			if (
+				$user_role === false && isset( $fed_admin_options['hide_admin_menu_bar']['role'] ) && array_key_exists(
+					'fed_disable_all_user',
+					$fed_admin_options['hide_admin_menu_bar']['role']
+				)
+			) {
 				show_admin_bar( false );
 			}
 		}
@@ -340,17 +345,23 @@ if ( ! class_exists( 'FEDT_Hooks' ) ) {
 					$cbg_color = isset( $fed_colors['color']['fed_upl_color_cbg_color'] ) ? $fed_colors['color']['fed_upl_color_cbg_color'] : '#f3f3f3';
 					// Primary BG Color
 					$pbg_color = isset( $fed_colors['color']['fed_upl_color_bg_color'] ) ? $fed_colors['color']['fed_upl_color_bg_color'] : '#f3f3f3';
+
+					$pfont_color = isset( $fed_colors['color']['fed_upl_color_bg_font_color'] ) ? $fed_colors['color']['fed_upl_color_bg_font_color'] : '#ffffff';
 					// Secondary BG Color
 					$sbg_color = isset( $fed_colors['color']['fed_upl_color_sbg_color'] ) ? $fed_colors['color']['fed_upl_color_sbg_color'] : '#033333';
 					// Secondary Font Color
-					$sfont_color = isset( $fed_colors['color']['fed_upl_color_sbg_font_color'] ) ? $fed_colors['color']['fed_upl_color_sbg_font_color'] : '#FFFFFF';
+					$sfont_color = isset( $fed_colors['color']['fed_upl_color_sbg_font_color'] ) ? $fed_colors['color']['fed_upl_color_sbg_font_color'] : '#ffffff';
 					// Panel Color
-					$panel_color = isset( $fed_colors['color']['fed_upl_color_pbg_color'] ) ? $fed_colors['color']['fed_upl_color_pbg_color'] : '#0AAAAA';
+					$panel_color = isset( $fed_colors['color']['fed_upl_color_pbg_color'] ) ? $fed_colors['color']['fed_upl_color_pbg_color'] : '#0aaaaa';
 
 					?>
 					<style>
 						body {
-							background-color: <?php echo $bbg_color; ?> !important;
+							background-color: <?php echo esc_attr($bbg_color); ?> !important;
+						}
+
+						.fed_login_wrapper a {
+							color: <?php echo esc_attr($pfont_color); ?> !important;
 						}
 
 						.fed_dashboard_items {
@@ -358,29 +369,29 @@ if ( ! class_exists( 'FEDT_Hooks' ) ) {
 						}
 
 						.fed_ads {
-							background-color: <?php echo $wbg_font_color; ?> !important;
+							background-color: <?php echo esc_attr($wbg_font_color); ?> !important;
 						}
 
 						.bc_fed .fed_menu_slug a {
-							background-color: <?php echo $sbg_color; ?> !important;
-							color: <?php echo $sfont_color; ?>;
+							background-color: <?php echo esc_attr($sbg_color); ?> !important;
+							color: <?php echo esc_attr($sfont_color); ?>;
 							margin-right: 10px;
 						}
 
 						.bc_fed .fed_menu_slug.active a {
-							background-color: <?php echo $pbg_color; ?> !important;
+							background-color: <?php echo esc_attr($pbg_color); ?> !important;
 						}
 
 						.bc_fed .panel-body {
-							background-color: <?php echo $cbg_color; ?> !important;
+							background-color: <?php echo esc_attr($cbg_color); ?> !important;
 						}
 
 						.bc_fed #fed_template1_template {
-							background-color: <?php echo $panel_color; ?> !important;
+							background-color: <?php echo esc_attr($panel_color); ?> !important;
 						}
 
 						.bc_fed .fed_dashboard_menus.fed_template1 {
-							background: <?php echo $sbg_color; ?>;
+							background: <?php echo esc_attr($sbg_color); ?>;
 						}
 
 						.swal2-icon.swal2-success {
@@ -390,6 +401,7 @@ if ( ! class_exists( 'FEDT_Hooks' ) ) {
 						.swal2-icon.swal2-success [class^='swal2-success-line'] {
 							background-color: <?php echo esc_attr( $pbg_color ); ?> !important;
 						}
+
 						.swal2-icon.swal2-success .swal2-success-ring {
 							width: 80px;
 							height: 80px;
@@ -401,9 +413,15 @@ if ( ! class_exists( 'FEDT_Hooks' ) ) {
 							border-left-color: <?php echo esc_attr( $pbg_color ); ?> !important;
 							border-right-color: <?php echo esc_attr( $pbg_color ); ?> !important;
 						}
+
 						.fed_primary_font_color {
 							color: <?php echo esc_attr( $pbg_color ); ?> !important;
 						}
+						.fed_tab_menus.active {
+							font-weight: 700;
+							text-decoration: underline;
+						}
+
 						@media only screen and (min-width: 900px) {
 							.bc_fed .fed_dashboard_menus.fed_template1 {
 								min-height: 100vh !important;
