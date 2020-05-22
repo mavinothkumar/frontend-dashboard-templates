@@ -5,10 +5,10 @@
 
 if ( isset( $_GET['action'], $_GET['key'], $_GET['login'] ) && ( 'fed_reset' === $_GET['action'] ) ) {
 	$details = fed_reset_password_only();
-	$type    = 'Reset Password';
+	$type    = 'reset_password';
 } else {
 	$details = fed_login_only();
-	$type    = 'Login';
+	$type    = 'login';
 }
 $registration = fed_get_registration_url();
 $forgot       = fed_get_forgot_password_url();
@@ -43,7 +43,7 @@ do_action( 'fed_before_login_only_form' );
 								?>
 								<div class="form-group">
 									<div class="text-center">
-										<input type="hidden" name="submit" value="Login"/>
+										<input type="hidden" name="submit" value="<?php echo esc_attr( $type ); ?>"/>
 										<button class="btn btn-primary"
 												type="submit"><?php echo $details['button']; ?></button>
 									</div>

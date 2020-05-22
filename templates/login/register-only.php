@@ -44,7 +44,7 @@ do_action( 'fed_before_register_only_form' );
 									<div class="col-md-9">
 										<input type="hidden"
 												name="submit"
-												value="Register"/>
+												value="register"/>
 										<button class="btn btn-primary"
 												type="submit"><?php echo esc_attr( $details['button'] ); ?></button>
 									</div>
