@@ -49,8 +49,6 @@ function fedt_load_text_domain() {
  * @param $fed_user_attr
  * @param $user_id
  */
-
-
 function fedt_show_user_by_role( $fed_user_attr, $user_id ) {
 	$user = new WP_User_Query(
 		array(

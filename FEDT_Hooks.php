@@ -29,6 +29,9 @@ if ( ! class_exists( 'FEDT_Hooks' ) ) {
 			add_filter( 'fed_admin_settings_upl', array( $this, 'fedt_admin_settings_upl' ), 10, 2 );
 			add_filter( 'fed_admin_upl_settings_template', array( $this, 'fedt_admin_upl_settings_template' ), 10, 2 );
 
+			add_action( 'wp_ajax_fedt_upload_profile_image', array( $this, 'fedt_upload_profile_image' ) );
+			add_action( 'wp_ajax_nopriv_fedt_upload_profile_image', 'fed_block_the_action' );
+
 			add_filter(
 				'fed_customize_admin_user_profile_layout_options', array(
 				$this,
@@ -45,6 +48,30 @@ if ( ! class_exists( 'FEDT_Hooks' ) ) {
 
 			// add_action( 'fed_before_login_form', array( $this, 'fedt_before_login_form' ) );
 		}
+
+		/**
+		 * Upload Profile Image.
+		 */
+		public function fedt_upload_profile_image() {
+			$post_payload = filter_input_array( INPUT_POST, FILTER_SANITIZE_STRING );
+			$get_payload  = filter_input_array( INPUT_GET, FILTER_SANITIZE_STRING );
+
+			fed_verify_nonce( $get_payload );
+
+			if ( isset( $post_payload['profile_image_url'] ) && ! empty( $post_payload['profile_image_url'] ) ) {
+				update_user_meta( get_current_user_id(), 'fed_user_profile_image',
+					$post_payload['profile_image_url'] );
+				wp_send_json_success( array(
+					'message' => __( 'Successfully Updated', 'frontend-dashboard-templates' ),
+				) );
+				exit();
+			}
+			wp_send_json_error( array(
+				'message' => __( 'Something Went Wrong', 'frontend-dashboard-templates' ),
+			) );
+			exit();
+		}
+
 
 		public function fedt_before_login_form() {
 			?>
@@ -368,6 +395,11 @@ if ( ! class_exists( 'FEDT_Hooks' ) ) {
 							background-color: transparent !important;
 						}
 
+						.fed_bg_primary {
+							background: <?php echo esc_attr( $pbg_color ); ?> !important;
+							color: <?php echo esc_attr( $pfont_color ); ?> !important;
+						}
+
 						.fed_ads {
 							background-color: <?php echo esc_attr($wbg_font_color); ?> !important;
 						}
@@ -417,6 +449,7 @@ if ( ! class_exists( 'FEDT_Hooks' ) ) {
 						.fed_primary_font_color {
 							color: <?php echo esc_attr( $pbg_color ); ?> !important;
 						}
+
 						.fed_tab_menus.active {
 							font-weight: 700;
 							text-decoration: underline;

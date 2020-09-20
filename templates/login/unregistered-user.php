@@ -4,12 +4,12 @@
  */
 $get_payload = filter_input_array( INPUT_GET, FILTER_SANITIZE_STRING );
 $menus       = fed_login_form();
-if ( isset( $get_payload['page'] ) && 'reset_password' === $get_payload['page'] ) {
-	$menu      = $menus[ $get_payload['page'] ]['html'];
+if ( isset( $get_payload['page_type'] ) && 'reset_password' === $get_payload['page_type'] ) {
+	$menu      = $menus[ $get_payload['page_type'] ]['html'];
 	$page_name = 'reset_password';
 	unset( $menus['login'], $menus['register'], $menus['forgot_password'] );
 } else {
-	$page      = fed_get_data( 'page', $get_payload, 'login' );
+	$page      = fed_get_data( 'page_type', $get_payload, 'login' );
 	$page_name = array_key_exists( $page, $menus ) ? $page : 'login';
 	$menu      = isset( $menus[ $page_name ]['html'] ) ? $menus[ $page_name ]['html'] : false;
 	unset( $menus['reset_password'] );
@@ -43,7 +43,7 @@ if ( $menu ) {
 								<?php
 								echo esc_url(
 									add_query_arg( array(
-										'page' => esc_attr( $key ),
+										'page_type' => esc_attr( $key ),
 									), fed_get_current_page_url() )
 								);
 								?>
@@ -76,14 +76,12 @@ if ( $menu ) {
 								?>
 								<div class="form-group">
 									<?php
-									$content_name = ! empty( $content['name'] ) && ( null === $label ) ? '<label>' . $content['name'] . '</label>' : '';
+									$content_name = ! empty( $content['name'] ) && ( null === $label ) ? fed_show_form_label( $content )  : '';
 									echo wp_kses_post( $content_name );
 									?>
 									<?php echo( $content['input'] ); ?>
 									<?php
-									echo null !== $label ? '<label>' . esc_attr(
-											$content['name']
-										) . '</label>' : '';
+									echo null !== $label ? fed_show_form_label( $content )  : '';
 									?>
 								</div>
 								<?php

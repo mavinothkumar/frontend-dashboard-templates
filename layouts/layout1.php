@@ -32,5 +32,6 @@ if ( $dashboard_url === $current_link && ! is_user_logged_in() ) {
 	?>
 </div>
 <?php get_footer(); ?>
+<?php wp_footer(); ?>
 </body>
 </html>

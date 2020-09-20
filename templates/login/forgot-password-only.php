@@ -15,9 +15,15 @@ do_action( 'fed_before_forgot_password_only_form' );
 		?>
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
+				<div class="flex-center">
+					<?php
+					// phpcs:ignore
+					echo fedt_get_website_logo(); ?>
+				</div>
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php echo esc_attr( $details['menu']['name'] ); ?></h3>
+						<h3 class="panel-title"><?php esc_attr_e( $details['menu']['name'],
+								'frontend-dashboard-templates' ); ?></h3>
 					</div>
 					<div class="panel-body">
 						<div class="fed_tab_content"
@@ -31,7 +37,8 @@ do_action( 'fed_before_forgot_password_only_form' );
 								foreach ( $contents as $content ) {
 									?>
 									<div class="form-group">
-										<label><?php echo esc_attr( $content['name'] ); ?></label>
+										<label><?php esc_attr_e( $content['name'],
+												'frontend-dashboard-templates' ); ?></label>
 										<?php
 										//phpcs:ignore
 										echo $content['input'];
@@ -47,7 +54,7 @@ do_action( 'fed_before_forgot_password_only_form' );
 												name="submit"
 												value="forgot_password"/>
 										<button class="btn btn-primary"
-												type="submit"><?php echo esc_attr( $details['button'] ); ?></button>
+												type="submit"><?php esc_attr_e( $details['button'],'frontend-dashboard-templates' ); ?></button>
 									</div>
 									<?php if ( $login ) { ?>
 										<div class="col-md-6 padd_top_20 text-center">
