@@ -18,6 +18,11 @@ if ( ! class_exists( 'FEDT_Hooks' ) ) {
 	class FEDT_Hooks {
 
 		public function __construct() {
+			if ( class_exists( '\FED\Services\Templates\TemplateManager' ) ) {
+				// Core 3.0+ natively manages templates, branding, and role-based admin bar
+				return;
+			}
+
 			add_filter( 'frontend-dashboard_template_paths', array( $this, 'add_template_part' ), 30 );
 			add_filter( 'fed_plugin_versions', array( $this, 'fedt_plugin_versions' ) );
 			add_filter( 'init', array( $this, 'fedt_remove_admin_bar' ) );

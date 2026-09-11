@@ -1,4 +1,4 @@
-=== Frontend Dashboard Templates ===
+=== Frontend Dashboard Templates [DEPRECATED - MERGED INTO CORE] ===
 Contributors: vinoth06, buffercode
 Tags: dashboard template, frontend dashboard template, template for dashboard, custom template
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7DHAEMST475BY
@@ -8,14 +8,16 @@ Stable tag: 3.0.0
 License: GPL V3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
-Frontend Dashboard Template will have customised layouts with logo, varieties colors for layouts, extendable by widget and layouts.
+Frontend Dashboard Templates has been merged into Frontend Dashboard Core (v3.0.0+).
 
 == Description ==
 
-> #### Notice
-> This is an Add-on plugin of [Frontend Dashboard](https://wordpress.org/plugins/frontend-dashboard/), So please install [Frontend Dashboard](https://buffercode.com/plugin/frontend-dashboard) to use this plugin
+> #### [DEPRECATED] Merged into Core
+> **Notice**: As of Frontend Dashboard v3.0.0, the **Modern App Shell layout**, **Custom Brand Logo**, **Role-based Admin Bar Visibility**, **Widget Areas**, and **Color Theming Engine** are built directly into the core **Frontend Dashboard** plugin.
+> You can safely deactivate and remove this add-on.
 
-Frontend Dashboard template will have customised layouts with logo, varieties colors for layouts, extendable by widget and layouts.
+Frontend Dashboard Templates previously provided template overrides and color themes. These are now natively available in Frontend Dashboard Core under **Frontend Dashboard > Settings > Dashboard**.
+
 
 = Website Logo =
 Add website logo to show in the custom profile layout with customizable height and width.
